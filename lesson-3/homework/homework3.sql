@@ -106,4 +106,21 @@ Establesh relationship between tables. It help to represent logical relationship
 Hard-Level Tasks (10)
 
 17.
+create table Customers(
+	CustomerID int primary key,
+	CustomerName varchar(50),
+	age int not null,
+	constraint CHECK_Age_Min Check (age>=18)
+)
+
+
+18.
+create table orders(
+	orderID int identity(100,10) primary key,
+	orderData date not null,
+	customerName varchar(100)
+)
+
+19.
+
 
