@@ -78,4 +78,32 @@ foreign Key (CategoryId)
 references Category(CategoryId)
 
 12.
+Purpose: Primary key is uniquely indentifies each row in a table. Unique key ensues that all value in a column are unique.
+Uniqueness: Enforces uniqueness and does not allow NULLs. Unique key also enforces uniqueness but allows one NULL.
+Number per table: For primary key it should be only 1 primary key per table. For Unique key there can be multiple unique contraint in a table.
+Usage: Primary key typically used for the main row identifier. Unique key used to ensure uniqueness on other important columns.
+
+13.
+alter table Products
+add constraint CHECK_Price_Product
+check (Price > 0)
+
+14.
+ALTER TABLE Products
+ADD Stock INT NOT NULL;
+
+15.
+update products
+set price = 0
+where price is null
+
+16.
+Key purpose of ferign key constraint is enforce data integraty. So it ensures data in the child table corresponds to data in the parent table.
+It prevents inserting value into child table that does not exist in the parent table.
+Prevent orphaned recors by preventing the deletion of a record in the parent table if it is being referenced by a record in the child table. This avoids orphaned records wehre child rows exist without a matching parent row.
+Establesh relationship between tables. It help to represent logical relationship between tables. such as  one-to-many or many-to-many. relationship.
+
+Hard-Level Tasks (10)
+
+17.
 
