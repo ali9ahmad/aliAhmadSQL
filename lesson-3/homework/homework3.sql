@@ -43,4 +43,39 @@ create table Category(
 IDENTITY column in SQL server is used to create auto-incrementing column, typically used for column keys. Its job is to automatically generate unique numeric values for each new row. So, there won't be need to manually insert values into that column.
 It looks like this columnName int identity(seed, increment). Seed is starting value, and incerement is the value to add for each new row.
 
+Medium-Level Tasks (10)
+
 10.
+--first we create Table
+
+create table Products(
+	ProductID int,
+	ProductName varchar (50),
+	Price decimal(10,2)
+)
+
+--Then we bulk insert the data
+
+BULK insert Products
+FROM 'C:\Users\user\products.txt'
+with (
+	fieldterminator = ',',
+	rowterminator = '\n',
+	firstrow = 1
+)
+
+11.
+--First we add needed column to our Prducts table
+
+ALTER TABLE Products
+ADD CategoryId INT;
+
+--Then we add constraint for feriegn key
+
+alter table products
+add Constraint FK_Products_Catergories
+foreign Key (CategoryId)
+references Category(CategoryId)
+
+12.
+
