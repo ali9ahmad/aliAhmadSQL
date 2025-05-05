@@ -40,7 +40,7 @@ create table Category(
 )
 
 9.
-IDENTITY column in SQL server is used to create auto-incrementing column, typically used for column keys. Its job is to automatically generate unique numeric values for each new row. So, there won't be need to manually insert values into that column.
+IDENTITY column in SQL server is used to create auto-incrementing column, typically used for column keys. Its job is to automatically generate unique numeric values for each new row. So, there will not be need to manually insert values into that column.
 It looks like this columnName int identity(seed, increment). Seed is starting value, and incerement is the value to add for each new row.
 
 Medium-Level Tasks (10)
@@ -122,5 +122,42 @@ create table orders(
 )
 
 19.
+create table OrderDetails(
+	OrderId int not null,
+	ProductId int not null,
+	Quantity int not null,
+	Price decimal(10,2)
+	constraint PK_OrderDetails Primary Key (OrderId, ProductId)
+)
 
+20.
+Both are used to handel null values by returning alternative values when a column or espression is null. Their keu differences are syntax and behavior and flexibilty.
+Syntax of ISNULL looks like isnull(expression, replacement_value). Expressiona is returned if the first argument is not null. If it is null it returns replacement value.
+
+Colaesce on the other hand can handle more than two values. Coalcase(exp1, exp2, ..., expN).
+Key difference number of arguments. For isnull it is only 2 and for coalesce more than 2.
+Return type for is null is based on the first argument. But for coalesce it is based on the highest precedence among all expressions.
+Coalesce is more flexible and type safe compare to isnull.
+
+21.
+CREATE TABLE Employees (
+    EmpID INT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    CONSTRAINT PK_Employees PRIMARY KEY (EmpID),
+    CONSTRAINT UQ_Employees_Email UNIQUE (Email)
+);
+
+22.
+ALTER TABLE OrderDetails
+ADD CONSTRAINT FK_OrderDetails_Orders
+FOREIGN KEY (OrderID)
+REFERENCES Orders(OrderID)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+
+ 	
+	
 
