@@ -126,16 +126,16 @@ from products
 where price > 50
 
 23.
+select *
+from Products
+where price < (select avg(price) * 0.1 from products)
+
+24.
 select * 
 from Employees
 where age < 30
 and DepartmentName in ('hr','it')
 --please do not reduce my score in my table colmn name is not just department it is departmentName. It is very minor thing. Query is working
-
-24.
-SELECT *
-FROM Customers
-WHERE Email LIKE '%@gmail.com';
 
 25.
 SELECT *
