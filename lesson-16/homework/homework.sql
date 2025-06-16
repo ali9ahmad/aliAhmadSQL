@@ -1,0 +1,117 @@
+--Easy Tasks
+
+1.
+WITH Numbers AS (
+    SELECT 1 AS Number
+    UNION ALL
+    SELECT Number + 1
+    FROM Numbers
+    WHERE Number < 1000
+)
+SELECT Number
+FROM Numbers
+OPTION (MAXRECURSION 1000);
+
+2.
+SELECT 
+    e.EmployeeID,
+    e.FIRSTNAME,
+    COALESCE(S.totalSales, 0) AS TotalSales
+FROM 
+    Employees e
+JOIN 
+    (SELECT 
+         EmployeeID, 
+         SUM(SaleSAmount) AS totalSales
+     FROM 
+         Sales
+     GROUP BY 
+         EmployeeID) AS S ON e.EmployeeID = S.EmployeeID;
+
+3.
+WITH AVERAGESALARY AS(
+	SELECT
+		AVG(SALARY) AS AVGSALARY
+	FROM
+		EMPLOYEES
+)
+
+SELECT 
+	AVGSALARY
+FROM AVERAGESALARY
+
+4.
+SELECT 
+	P.PRODUCTID,
+	P.PRODUCTNAME,
+	S.MAXSALES
+FROM
+	PRODUCTS P
+JOIN
+	(
+	SELECT
+		PRODUCTID,
+		MAX(SALESAMOUNT) AS MAXSALES
+	FROM
+		SALES
+	GROUP BY
+		PRODUCTID) AS S ON P.PRODUCTID = S.PRODUCTID
+
+5.
+WITH Numbers AS (
+    SELECT 1 AS Number
+    UNION ALL
+    SELECT Number * 2
+    FROM Numbers
+    WHERE Number * 2 < 1000000
+)
+SELECT Number
+FROM Numbers;
+
+6.
+WITH SALESCOUNT AS(
+	SELECT
+		EMPLOYEEID,
+		COUNT(*) AS SALECOUNT
+	FROM
+		SALES
+	GROUP BY
+		EMPLOYEEID
+	HAVING	
+		COUNT(*) > 5
+)
+
+SELECT
+	E.FIRSTNAME
+FROM 
+	EMPLOYEES E
+JOIN
+	SALESCOUNT S ON E.EMPLOYEEID = S.EMPLOYEEID
+
+7.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
