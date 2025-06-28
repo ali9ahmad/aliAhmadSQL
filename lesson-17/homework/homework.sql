@@ -15,7 +15,34 @@ select e1.name
   join employee e2 
   on e1.id = e2.managerid
 group by e1.name 
-having count(e2.name) >=5
+having count(*) >=5
 
 3.
-  
+SELECT 
+	PRODUCT_NAME,
+    SUM(UNIT) AS UNIT
+FROM 
+    ORDERS O
+JOIN
+	PRODUCTS P ON O.PRODUCT_ID = P.PRODUCT_ID
+WHERE 
+    YEAR(ORDER_DATE) = 2020 AND MONTH(ORDER_DATE) = 2
+GROUP BY 
+    PRODUCT_NAME
+HAVING 
+    SUM(UNIT) >= 100
+ORDER BY 
+	SUM(UNIT) DESC
+
+4.
+WITH CTE AS (
+SELECT VENDOR,  SUM([COUNT]) COUNT
+FROM 
+	ORDERS
+GROUP BY
+	VENDOR
+)
+
+SELECT  O.CUSTOMERID, C.VENDOR
+FROM CTE  C
+LEFT JOIN ORDERS O ON C.VENDOR = O.VENDOR
